@@ -73,7 +73,7 @@
             var form = document.getElementById('contactForm');
             
             var formData = new FormData(form);
-            var apiUrl = 'http://localhost:1337/api/contacts'; // Replace with your actual API endpoint
+            var apiUrl = 'https://ty-strapi-demo.onrender.com/api/contacts'; // Replace with your actual API endpoint
             console.log(formData,formData.get("name"));
             fetch(apiUrl, {
                 method: 'POST',
