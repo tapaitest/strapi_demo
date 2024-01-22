@@ -11,6 +11,7 @@
             margin: 0;
             padding: 0;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -48,9 +49,22 @@
         button:hover {
             background-color: #45a049;
         }
+
+        #success-message {
+            display: none;
+            padding: 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body>
+    <div id="success-message">
+        <p>API call successful!</p>
+    </div>
     <form id="contactForm">
         <h1>Contact Information</h1>
         <label for="name">Name:</label>
@@ -67,7 +81,7 @@
 
         <button type="button" onclick="submitForm()">Submit</button>
     </form>
-
+    
     <script>
         function submitForm() {
             var form = document.getElementById('contactForm');
@@ -90,6 +104,13 @@
             .then(response => response.json())
             .then(data => {
                 console.log('Success:', data);
+                document.getElementById('contactForm').reset();
+                document.getElementById('success-message').style.display = 'block';
+
+                setTimeout(function() {
+                    document.getElementById('success-message').style.display = 'none';
+                }, 3000);
+    
                 // You can add further handling for a successful response
             })
             .catch(error => {
